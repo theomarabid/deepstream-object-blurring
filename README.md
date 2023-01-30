@@ -85,3 +85,16 @@ resized_frame = frame[400:1000, 860:1920, :]
     - Uses the fd_lpd_model from the redaction app.
         - input resolution: 480 x 270 x 3 (1.77)
 
+
+# Jan 30 - Two Stage (Car + LPD)
+Ran the following pipeline for detecting cars only. Works very well.
+```
+./deepstream-redaction-app -c configs/pgie_config_tfn.txt -i /tmp/video/01391_192.168.129.119_profile4_2022-01-06-22.00.05.no_crop.mp4 -o /tmp/video/01391_192.168.129.119_profile4_2022-01-06-22.00.05.no_crop.tfn.mp4
+```
+
+Attempt to run with secondary OD
+```
+./deepstream-redaction-app -c configs/pgie_config_tfn.txt -s configs/pgie_config_lpd_sgie.txt -i /tmp/video/01391_192.168.129.119_profile4_2022-01-06-22.00.05.no_crop.mp4 -o /tmp/video/01391_192.168.129.119_profile4_2022-01-06-22.00.05.no_crop.tfn.mp4
+```
+
+

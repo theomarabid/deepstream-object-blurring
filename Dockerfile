@@ -7,9 +7,12 @@ WORKDIR /opt/nvidia/deepstream/deepstream-6.1/sources/apps
 # the "crt/" files. For some reason, it is not included in the base docker.
 RUN apt update && apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev ffmpeg \
     cuda-nvcc-11-7 && \
-    rm -rf /var/lib/apt/lists/* && \
-    git clone https://github.com/NVIDIA-AI-IOT/redaction_with_deepstream.git && \
-    cd redaction_with_deepstream && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY src/redaction_with_deepstream \
+    /opt/nvidia/deepstream/deepstream-6.1/sources/apps/redaction_with_deepstream
+
+RUN cd /opt/nvidia/deepstream/deepstream-6.1/sources/apps/redaction_with_deepstream && \
     make
 
 WORKDIR /opt/nvidia/deepstream/deepstream-6.1/sources/apps/redaction_with_deepstream
